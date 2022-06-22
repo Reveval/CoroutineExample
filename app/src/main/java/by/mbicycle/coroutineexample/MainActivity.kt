@@ -11,6 +11,8 @@ import android.view.Menu
 import android.view.MenuItem
 import by.mbicycle.coroutineexample.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.*
@@ -48,6 +50,18 @@ class MainActivity : AppCompatActivity() {
                     Log.d("TAG", result)
                 }
             }
+        }
+    }
+
+    /**
+     * Создание собственного Cold Flow при помощи билдера flow {}
+     */
+    private fun emitDataWithDelay(): Flow<Int> = flow {
+        var progress = 0
+        while (progress < 100) {
+            progress += 2
+            delay(30)
+            emit(progress)
         }
     }
 
